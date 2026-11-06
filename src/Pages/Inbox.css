@@ -1,0 +1,152 @@
+.inbox-container {
+    padding: 40px 5%;
+    min-height: 80vh;
+    background-color: #f4f6f9;
+}
+
+.inbox-title {
+    text-align: center;
+    color: #1a2a42;
+    margin-bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.message-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 5px solid #F5BD02;
+    transition: transform 0.2s ease;
+}
+
+.message-card:hover {
+    transform: translateY(-2px);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.message-header h3 {
+    margin: 0;
+    color: #1b365d;
+}
+
+.message-date {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* --- تنسيق حاويات الإيميل والهاتف وزر النسخ --- */
+.message-detail-container {
+    display: flex;
+    align-items: center;
+    gap: 12px; 
+    margin-bottom: 10px; /* مسافة بسيطة بين الإيميل والهاتف */
+}
+
+/* لتفريق قسم التفاصيل عن نص الرسالة الأساسي */
+.message-detail-container:last-of-type {
+    margin-bottom: 20px;
+}
+
+.message-detail {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 0; /* لإبقاء النص بجانب الزر تماماً */
+}
+
+/* زر النسخ الأيقوني (دائري ومرتب) */
+.copy-btn {
+    background-color: #e2e8f0;
+    color: #1b365d;
+    border: none;
+    border-radius: 50%; /* جعله دائرياً */
+    width: 32px; 
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background-color: #cbd5e1;
+    transform: scale(1.08); /* تكبير لطيف عند مرور الماوس */
+}
+
+/* شكل الزر عندما يتم النسخ بنجاح */
+.copy-btn.copied {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message-body {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    color: #333;
+    line-height: 1.6;
+}
+/* --- تنسيق شريط العنوان وزر تسجيل الخروج --- */
+.inbox-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+}
+
+.inbox-header-flex .inbox-title {
+    margin-bottom: 0;
+}
+
+.logout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1a2a42;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #F5BD02; 
+    color: #1b365d;
+}
+
+
+@media (max-width: 768px) {
+   
+
+    .inbox-header-flex {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .message-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}

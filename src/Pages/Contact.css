@@ -1,0 +1,264 @@
+/* Contact.css */
+.form-status {
+  
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 90%;
+  width: max-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    padding: 12px 16px;
+  border-radius: 8px;
+
+  text-align: center;
+  font-weight: 600;
+}
+/* خلفية الصفحة بالكامل (لون بيج فاتح) */
+.contact-page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+
+    /* إضافة الصورة وتثبيتها */
+    background-image: 
+        linear-gradient(rgba(240, 244, 248, 0.85), rgba(240, 244, 248, 0.85)), /* طبقة شفافة لتوضيح الخطوط */
+        url('./Admin.jpg'); /* ضع مسار الصورة التي تفضلها */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+/* الحاوية الرئيسية للمربع */
+.contact-container {
+    display: flex;
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+}
+
+/* أزرار التكبير والإغلاق العلوية */
+
+
+
+
+
+
+
+
+/* --- القسم الأيسر (الصورة) --- */
+.contact-left {
+    flex: 1;
+    padding: 20px 40px;
+    display: flex;             /* لجعل الحاوية تمدد الصورة طولياً */
+    align-items: stretch;
+}
+
+.contact-image {
+    width: 100%;
+    height: 100%;              /* لتأخذ كامل الارتفاع المتاح للأسفل */
+    min-height: 520px;         /* يعطيها طولاً بارزاً ومحاذياً للنموذج */
+    object-fit: cover;         /* يملأ المساحة بدون مطّ أو تشويه للنسب */
+    object-position: center;   /* يركز على منتصف التصميم */
+    border-radius: 8px;        /* تدوير خفيف للأطراف ليتناسق مع الكروت */
+    display: block;
+}
+
+/* --- القسم الأيمن (النصوص والفورم) --- */
+.contact-right {
+    flex: 1.5;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #1B365D;
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* تقسيم المحتوى داخل القسم الأيمن إلى عمودين (فورم ومعلومات) */
+.contact-content-split {
+    display: flex;
+    gap: 60px;
+    border-top: 2px solid #1B365D; /* الخط الأسود الفاصل أعلى الفورم */
+    padding-top: 40px;
+}
+
+/* --- تصميم الفورم (عمود اليسار) --- */
+.contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 1rem;
+    color: #1B365D;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* تصميم حقول الإدخال (خط سفلي فقط بدون إطار) */
+.input-group input {
+    border: none;
+    border-bottom: 2px solid #1B365D;
+    background-color: transparent;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    color: #1B365D;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-bottom-color: #1B365D;
+}
+
+/* الزر الأسود البيضاوي */
+.contact-submit-btn {
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px; /* جعل الحواف دائرية بالكامل */
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: max-content; /* حجم الزر على قد الكلمة */
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-submit-btn:hover {
+    background-color: #7bcaff;
+}
+
+/* --- تصميم معلومات التواصل (عمود اليمين) --- */
+.contact-info {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.info-block h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+    color: #1B365D;
+}
+
+.info-block p {
+    font-size: 1rem;
+    color: #1B365D;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* الأيقونات الاجتماعية */
+/* الأيقونات الاجتماعية */
+.social-icons {
+  display: flex;
+  gap: 22px;
+  margin-top: auto;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.social-icons a {
+  color: #1B365D;
+  font-size: 1.85rem; /* تكبير الحجم بشكل بارز وسهل للضغط */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: #F5BD02; /* يتحول للأصفر المميز للنادي عند التمرير */
+  transform: translateY(-3px) scale(1.15);
+}
+
+.social-icons a:active {
+  transform: scale(0.95);
+}
+
+.recaptcha-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 15px 0;
+  width: 100%;
+}
+
+@media (max-width: 400px) {
+  .recaptcha-wrapper {
+    transform: scale(0.85);
+    -webkit-transform: scale(0.85);
+    transform-origin: center center;
+  }
+}
+/* --- إعدادات الهواتف لصفحة Contact --- */
+@media (max-width: 768px) {
+  .contact-image {
+    max-height: 250px; /* تصغير الارتفاع لتظهر الفورم مباشرة تحتها دون تمرير طويل */
+  
+}
+    .contact-page-wrapper {
+    padding: 10px;
+  }
+
+  .contact-container {
+    flex-direction: column; /* ترتيب الصورة والفورم فوق بعض */
+  }
+
+  .contact-left {
+    padding: 20px;
+  }
+
+  .contact-right {
+    padding: 20px;
+  }
+
+  .contact-heading {
+    font-size: 2.5rem; /* تصغير حجم العنوان */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contact-content-split {
+    flex-direction: column; /* ترتيب حقول الإدخال ومعلومات التواصل فوق بعض */
+    gap: 30px;
+    border-top: none; /* إزالة الخط الفاصل لتوفير المساحة */
+    padding-top: 10px;
+  }
+
+  .contact-submit-btn {
+    width: 100%; /* جعل الزر يأخذ عرض الشاشة بالكامل */
+    text-align: center;
+  }
+  
+  .social-icons {
+    justify-content: center; /* توسيط أيقونات التواصل */
+  }
+  
+  .info-block {
+      text-align: center; /* توسيط معلومات التواصل */
+  }
+}

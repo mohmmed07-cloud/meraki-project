@@ -1,0 +1,332 @@
+/* الإطار الخارجي */
+
+.motions-page {
+  padding: 40px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #68a8cd;
+  background-image: url('./Motions.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.motions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4%;
+  margin-bottom: 25px;
+}
+
+.add-motion-btn {
+  padding: 10px 22px;
+  background: #F5BD02;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1b365d;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(245, 189, 2, 0.3);
+}
+
+.add-motion-btn:hover {
+  background-color: #ffd027;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(245, 189, 2, 0.45);
+}
+
+.main-title {
+  color: #0f172a;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 2.3rem;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* بطاقة الموشن الأساسية */
+.content-container {
+  border-radius: 20px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 340px;
+  margin-bottom: 35px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.16);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 42px -10px rgba(15, 23, 42, 0.2);
+}
+
+/* قسم النص */
+.text-section {
+  flex: 0 0 42%;
+  padding: 35px 45px 35px 35px;
+  background: linear-gradient(145deg, #1b365d, #0f2444);
+  color: #ffffff;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+  position: relative;
+}
+
+.section-title {
+  color: #F5BD02;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.85rem;
+  font-weight: 700;
+  font-family: 'EB Garamond', Georgia, serif;
+  line-height: 1.25;
+  letter-spacing: 0.5px;
+}
+
+.section-desc {
+  color: #f1f5f9;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0;
+  font-weight: 400;
+  max-width: 90%;
+}
+
+/* قسم السلايدر: بدون مشاكل overflow */
+.slider-section {
+  flex: 1;
+  padding: 20px 25px 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+/* أزرار السلايدر: في مكانها الطبيعي بدون أن تطوف فوق الصور وتخربها */
+.arrow-btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #cbd5e1;
+  color: #1b365d;
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  padding: 0;
+  outline: none;
+  z-index: 5;
+  flex-shrink: 0;
+}
+
+.arrow-btn:hover {
+  background: #ffffff;
+  border-color: #94a3b8;
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+.arrow-btn:active {
+  transform: scale(0.95);
+}
+
+.images-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+  max-width: 650px;
+}
+
+/* الصورة المركزية: متناسقة تماماً مع الارتفاع */
+.center-img {
+  width: 380px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease;
+}
+
+.center-img:hover {
+  transform: scale(1.02);
+}
+
+/* الصور الجانبية */
+.side-img {
+  width: 110px;
+  height: 75px;
+  object-fit: cover;
+  opacity: 0.45;
+  border-radius: 8px;
+  transform: scale(0.92);
+  transition: all 0.25s ease;
+}
+
+.side-img:hover {
+  opacity: 0.75;
+}
+
+/* زر تسجيل الخروج */
+.logout-btn {
+  padding: 10px 20px;
+  background: rgba(220, 38, 38, 0.95);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.25);
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* =======================================
+   تجاوب الشاشات والهواتف (Responsive)
+======================================= */
+
+@media (max-width: 1200px) {
+  .motions-page {
+    padding: 20px 14px;
+  }
+
+  .motions-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 0 2%;
+  }
+
+  .motions-header > div {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .motions-header .add-motion-btn,
+  .motions-header .logout-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  .content-container {
+    flex-direction: column;
+    min-height: auto;
+    border-radius: 16px;
+    margin-bottom: 25px;
+  }
+
+  .content-container:hover {
+    transform: none;
+  }
+
+  .text-section {
+    flex: none;
+    width: 100%;
+    clip-path: none;
+    padding: 25px 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .section-desc {
+    font-size: 1rem;
+    max-width: 92%;
+  }
+
+  .slider-section {
+    flex: none;
+    width: 100%;
+    padding: 20px 12px 25px 12px;
+  }
+
+  .carousel {
+    gap: 12px;
+  }
+
+  .center-img {
+    width: 360px !important;
+    height: 210px !important;
+  }
+
+  .side-img {
+    width: 100px !important;
+    height: 70px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .side-img {
+    display: none !important;
+  }
+
+  .center-img {
+    width: 100% !important;
+    max-width: 310px !important;
+    height: 190px !important;
+  }
+
+  .arrow-btn {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .center-img {
+    max-width: 250px !important;
+    height: 155px !important;
+  }
+
+  .motions-page {
+    padding: 15px 10px;
+  }
+}

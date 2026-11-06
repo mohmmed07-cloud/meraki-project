@@ -1,0 +1,297 @@
+/* Applications.css */
+/* 1. استدعاء الخطوط الثلاثة من Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap');
+
+/* الحاوية الرئيسية للصفحة */
+.applications-container {
+    padding: 6rem 5% 4rem 5%;
+    background-color: #cdcdce; 
+    background-image: url('APPImage.jpg'); 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+    background-size: cover; 
+    background-position: center;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    box-sizing: border-box;
+}
+
+/* عنوان الصفحة مع اللمعة الذهبية */
+.applications-container h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #1b365d; 
+    margin-bottom: 2rem;
+    text-align: center;
+    border-bottom: 4px solid transparent;
+    border-image: linear-gradient(90deg, #d4af37 0%, #ffe066 50%, #d4af37 100%) 1;
+    filter: drop-shadow(0 2px 4px rgba(245, 189, 2, 0.45));
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* حاوية الفورم كبطاقة متماسكة */
+.application-form {
+    background: rgba(255, 255, 255, 0.88); /* زيادة التعتيم لضمان تباين مريح للعين */
+    backdrop-filter: blur(12px); 
+    -webkit-backdrop-filter: blur(12px); 
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); 
+    width: 100%;
+    max-width: 700px; 
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    box-sizing: border-box;
+}
+
+/* تنسيق النصوص فوق الحقول (Labels) */
+.application-form label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #1a2a42;
+    font-size: 1.05rem;
+    margin-bottom: -4px; 
+    text-align: left; 
+    width: 100%; 
+    display: block; 
+}
+
+/* نصوص الأسئلة داخل المجموعات */
+.form-group p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #1a2a42;
+    font-size: 1.05rem;
+    margin-top: 0;
+    margin-bottom: 14px;
+    text-align: left; 
+}
+
+/* تنسيق حقول الإدخال النصية والرقمية */
+.application-form input[type="text"],
+.application-form input[type="number"],
+.application-form input[type="email"],
+.application-form input[type="tel"] {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccd2db;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.application-form input:focus {
+    outline: none;
+    border-color: #1b365d; 
+    box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.15);
+}
+
+/* المجموعات الخاصة بالدوائر والمربعات (الأسئلة) */
+.form-group {
+    margin-top: 10px;
+    padding: 18px 20px;
+    background-color: #f4f6f9; 
+    border-left: 5px solid #1b365d; 
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* تنسيق خيارات الدوائر والمربعات */
+.radio-option,
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.radio-option input[type="radio"],
+.checkbox-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #1b365d;
+}
+
+.radio-option label,
+.checkbox-option label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #333333;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* تنسيق الحقل النصي الخاص بخيار Other */
+.other-input input[type="text"] {
+    flex: 1;
+    padding: 6px 10px;
+    border: none !important;
+    border-bottom: 1px solid #999 !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+
+.other-input input[type="text"]:focus {
+    border-bottom: 2px solid #1b365d !important;
+}
+
+/* حاوية الكابتشا وتوسيطها */
+.recaptcha-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* زر الإرسال */
+.application-form button[type="submit"] {
+    font-family: 'Montserrat', sans-serif;
+    padding: 14px;
+    background-color: #1b365d; 
+    color: #fff; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    width: 100%;
+    margin-top: 15px;
+    box-sizing: border-box;
+}
+
+.application-form button[type="submit"]:hover {
+    background-color: #F5BD02; 
+    color: #1b365d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(245, 189, 2, 0.45);
+}
+
+.application-form button[type="submit"]:active {
+    transform: scale(0.98); 
+}
+
+/* إشعارات النجاح والخطأ */
+.form-status {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 90%;
+    width: max-content;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.form-status.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-status.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+/* ضبط سطر الـ Other ليكون متناسقاً */
+.other-option-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* تكبير وتمديد حقل إدخال Other */
+.other-input,
+.other-option-container input[type="text"] {
+  flex: 1; /* يجعله يتمدد ويأخذ باقي المساحة المتاحة بالكامل */
+  min-width: 200px; /* ضمان ألا ينكمش إطلاقاً */
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.other-input:focus,
+.other-option-container input[type="text"]:focus {
+  border-color: #1a2a3a;
+  box-shadow: 0 0 0 2px rgba(26, 42, 58, 0.1);
+}
+/* --- إعدادات الهواتف لصفحة Applications --- */
+@media (max-width: 768px) {
+    .applications-container {
+        padding: 2.5rem 14px 2.5rem 14px;
+        background-attachment: scroll; /* حل مشكلة تمدد وتشوّه الخلفية على الهواتف */
+    }
+
+    .applications-container h2 {
+        font-size: 26px;
+        margin-bottom: 1.2rem;
+    }
+
+    .application-form {
+        padding: 20px 14px;
+        width: 100%;
+        border-radius: 10px;
+        gap: 12px;
+    }
+
+    .application-form label,
+    .form-group p {
+        font-size: 0.95rem;
+    }
+
+    .form-group {
+        padding: 14px 12px;
+        margin-top: 8px;
+    }
+
+    .other-input {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .other-input input[type="text"] {
+        width: 100%;
+        margin-top: 6px;
+    }
+
+    .recaptcha-wrapper {
+        transform: scale(0.88);
+        -webkit-transform: scale(0.88);
+        transform-origin: center center;
+    }
+
+    .application-form button[type="submit"] {
+        font-size: 1.15rem;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .recaptcha-wrapper {
+        transform: scale(0.80);
+        -webkit-transform: scale(0.80);
+    }
+}

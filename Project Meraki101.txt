@@ -1,0 +1,2125 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: var(--ju-navy); /* استخدام الكحلي الأساسي */
+    color: var(--ju-white);
+    margin-top: auto; 
+    z-index: 10;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+import React from 'react';
+import './Footer.css';
+
+const Footer = () => {
+    return (
+        <footer className="footer">
+            <p>&copy; 2026 JU Debate Club. All Rights Reserved.</p>
+        </footer>
+    );
+};
+
+export default Footer;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: var(--ju-navy); /* الخلفية الزرقاء/الكحلية */
+    color: var(--ju-white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 65px;
+    height: 65px; 
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo h3 {
+    margin: 0;
+    color: var(--ju-white); 
+    font-size: 1.8rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ------------------------------------- */
+/* القائمة وتأثير الانزلاق */
+/* ------------------------------------- */
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    gap: 15px; 
+    margin: 0;
+    padding: 0;
+    position: relative; /* ضروري جداً لكي يتحرك الصندوق ضمن هذه المساحة */
+}
+
+.nav-list li {
+    padding: 8px 16px;
+    position: relative;
+    z-index: 2; /* ليكون النص فوق الصندوق الأبيض المنزلق */
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: var(--ju-white); /* لون النص أبيض بالأساس */
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    font-family: 'EB Garamond', serif;
+    display: block; 
+}
+
+/* عند مرور الماوس، يتغير لون النص إلى الأسود ليبرز فوق الصندوق الأبيض */
+.nav-list li:hover a {
+    color: black;
+}
+
+/* تصميم صندوق الأنيميشن المنزلق */
+.animation-slider {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    background-color: var(--ju-white); /* خلفية الصندوق بيضاء */
+    border-radius: 5px;
+    /* transition تصنع الحركة الناعمة الموجودة في الفيديو */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+    z-index: 1; /* ليكون خلف النصوص */
+    pointer-events: none; /* حتى لا يعيق ضغطات الماوس على الروابط */
+}
+/* --- إعدادات التجاوب للنافبار على الهواتف --- */
+@media (max-width: 768px) {
+  /* إخفاء الصندوق المنزلق على الهواتف لأنه يسبب التشوه */
+  .animation-slider {
+    display: none !important; 
+  }
+
+  /* إضافة تأثير خلفية بيضاء بسيط للكلمة نفسها بدلاً من الصندوق المنزلق */
+  .nav-list li {
+    transition: background-color 0.3s ease !important;
+  }
+
+  .nav-list li:hover,
+  .nav-list li:active {
+    background-color: white !important; 
+  }
+
+  .nav-list li:hover a,
+  .nav-list li:active a {
+    color: var(--ju-navy, #1B365D) !important; /* تغيير لون النص للكحلي ليقرأ بوضوح */
+  }
+    .navbar {
+    flex-direction: column !important; /* وضع الشعار فوق والروابط تحته */
+    padding: 15px 10px !important;
+    gap: 15px !important;
+  }
+  
+  .nav-list {
+    flex-wrap: wrap !important; /* السر هنا: السماح للكلمات بالنزول لسطر جديد */
+    justify-content: center !important; /* توسيط الكلمات */
+    gap: 10px !important;
+  }
+  
+  .nav-list li {
+    padding: 8px 12px !important;
+  }
+  
+  .nav-list li a {
+    font-size: 1rem !important; /* تصغير الخط قليلاً ليناسب الشاشة */
+  }
+
+  .logo h3 {
+    font-size: 1.5rem !important; /* تصغير اسم النادي قليلاً */
+  }
+}
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
+import './Navbar.css';
+import clubLogo from './JUDebateLOGO.jpeg';
+
+const Navbar = () => {
+    const { user } = useAuth();
+    const [sliderStyle, setSliderStyle] = useState({ opacity: 0, left: 0, width: 0 });
+
+    const handleMouseEnter = (e) => {
+        setSliderStyle({
+            opacity: 1,
+            left: e.currentTarget.offsetLeft,
+            width: e.currentTarget.offsetWidth
+        });
+    };
+
+    const handleMouseLeave = () => {
+        setSliderStyle((prev) => ({ ...prev, opacity: 0 }));
+    };
+
+    return (
+        <nav className="navbar">
+            <div className="logo">
+                <img src={clubLogo} alt="Club Logo" className="logo-icon" />
+                <h3>JU DEBATE CLUB</h3>
+            </div>
+            
+            <ul className="nav-list" onMouseLeave={handleMouseLeave}>
+                
+                <li onMouseEnter={handleMouseEnter}><Link to="/">Home</Link></li>
+                <li onMouseEnter={handleMouseEnter}><Link to="/activities">Activities</Link></li>
+                <li onMouseEnter={handleMouseEnter}><Link to="/motions">Motions</Link></li>
+                <li onMouseEnter={handleMouseEnter}><Link to="/contact">Contact</Link></li>
+                {user ? (
+                    <li onMouseEnter={handleMouseEnter}><Link to="/admin">Admin</Link></li>
+                ) : (
+                    <li onMouseEnter={handleMouseEnter}><Link to="/login">Login</Link></li>
+                )}
+                
+                <div className="animation-slider" style={sliderStyle}></div>
+                
+            </ul>
+        </nav>
+    );
+};
+
+export default Navbar;
+import React, { useState, useEffect } from 'react';
+import { db, auth } from './firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
+const AddMotionAdmin = () => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [image1File, setImage1File] = useState(null);
+    const [image2File, setImage2File] = useState(null);
+    const [image3File, setImage3File] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [successMsg, setSuccessMsg] = useState('');
+    const [checkingAuth, setCheckingAuth] = useState(true);
+    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                navigate('/login');
+            } else {
+                setCheckingAuth(false);
+            }
+        });
+        return () => unsubscribe();
+    }, [navigate]);
+
+    // دالة لتحويل ملف الصورة من الهاتف إلى صيغة نصية (Base64) لتخزينها في قاعدة البيانات وعرضها فوراً
+    const convertFileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            if (!file) {
+                resolve(null);
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target.result);
+            reader.onerror = (error) => reject(error);
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setSuccessMsg('');
+
+        try {
+            // تحويل الصور الثلاث المأخوذة من الهاتف إلى نصوص برمجية
+            const img1Base64 = await convertFileToBase64(image1File);
+            const img2Base64 = await convertFileToBase64(image2File);
+            const img3Base64 = await convertFileToBase64(image3File);
+
+            // تجميع الصور الموجودة فقط في مصفوفة السلايدر
+            const imagesArray = [img1Base64, img2Base64, img3Base64].filter(img => img !== null);
+
+            // حفظ البيانات في الـ Firestore
+            await addDoc(collection(db, "motions"), {
+                title,
+                description,
+                images: imagesArray,
+                createdAt: new Date()
+            });
+
+            setSuccessMsg('تم نشر الموشن وصور الهاتف بنجاح! 🚀');
+            setTitle('');
+            setDescription('');
+            setImage1File(null);
+            setImage2File(null);
+            setImage3File(null);
+        } catch (error) {
+            console.error("Error adding motion: ", error);
+            alert('حدث خطأ أثناء النشر');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (checkingAuth) return <div style={{textAlign: 'center', marginTop: '50px'}}>Loading...</div>;
+
+    return (
+        <div style={{padding: '40px', maxWidth: '600px', margin: '0 auto'}}>
+            <h2>Admin: Add Motion with Phone Images</h2>
+            {successMsg && <p style={{color: 'green'}}>{successMsg}</p>}
+            
+            <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
+                <div>
+                    <label>Motion Title:</label>
+                    <input 
+                        type="text" 
+                        value={title} 
+                        onChange={(e) => setTitle(e.target.value)} 
+                        style={{width: '100%', padding: '8px'}}
+                        required 
+                    />
+                </div>
+
+                <div>
+                    <label>Description:</label>
+                    <textarea 
+                        value={description} 
+                        onChange={(e) => setDescription(e.target.value)} 
+                        rows="4" 
+                        style={{width: '100%', padding: '8px'}}
+                        required 
+                    />
+                </div>
+
+                <div>
+                    <label>الصورة الأولى (السلايدر اليسار):</label>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => setImage1File(e.target.files[0])} 
+                        style={{width: '100%', padding: '8px'}}
+                    />
+                </div>
+
+                <div>
+                    <label>الصورة الثانية (الرئيسية في الوسط):</label>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => setImage2File(e.target.files[0])} 
+                        style={{width: '100%', padding: '8px'}}
+                    />
+                </div>
+
+                <div>
+                    <label>الصورة الثالثة (السلايدر اليمين):</label>
+                    <input 
+                        type="file" 
+                        accept="image/*" 
+                        onChange={(e) => setImage3File(e.target.files[0])} 
+                        style={{width: '100%', padding: '8px'}}
+                    />
+                </div>
+
+                <button type="submit" disabled={loading} style={{padding: '10px', background: '#1a2a42', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold'}}>
+                    {loading ? 'Publishing...' : 'Publish Motion'}
+                </button>
+            </form>
+        </div>
+    );
+};
+
+export default AddMotionAdmin;
+.admin-container {
+    padding: 40px 5%;
+    min-height: 80vh;
+    background-color: #f4f6f9;
+}
+
+.admin-container h2 {
+    text-align: center;
+    color: #1a2a42;
+    margin-bottom: 30px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-table th, .admin-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-table th {
+    background-color: #1a2a42;
+    color: white;
+    font-weight: bold;
+}
+
+.admin-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.admin-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logout-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1a2a42;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #F5BD02; 
+    color: #1b365d;
+}
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* عشان السحب يكون سلس على آيفون */
+}
+
+table {
+  min-width: 700px; /* يخلي الجدول يحافظ على شكله الطبيعي ويطلع سكرول بدل ما ينضغط */
+}
+@media (max-width: 768px) {
+    
+    .admin-container {
+        padding: 20px 5%;
+        overflow-x: auto;
+    }
+
+    .admin-table th, .admin-table td {
+        padding: 10px;
+    }
+
+    .logout-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    .admin-header-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+}
+import React, { useState, useEffect } from 'react';
+import { collection, getDocs } from "firebase/firestore";
+import { db, auth } from './firebase';
+import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import './Admin.css';
+
+const Admin = () => {
+    const [applications, setApplications] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    // التحقق مما إذا كان المستخدم مسجلاً لدخوله
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (!currentUser) {
+                navigate('/login'); // إذا لم يكن مسجلاً، اذهِب لصفحة تسجيل الدخول
+            } else {
+                setUser(currentUser);
+                fetchApplications();
+            }
+        });
+        return () => unsubscribe();
+    }, [navigate]);
+
+    const fetchApplications = async () => {
+        try {
+            const querySnapshot = await getDocs(collection(db, "applications"));
+            const data = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setApplications(data);
+            setLoading(false);
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+            setLoading(false);
+        }
+    };
+
+    const handleLogout = async () => {
+        await signOut(auth);
+        navigate('/login');
+    };
+
+    if (!user) return null;
+
+    return (
+        <div className="admin-container">
+    <div className="admin-header-flex">
+        <h2>Club Admin Panel - Membership Requests</h2>
+        <button className="logout-btn" onClick={handleLogout}>Logout</button>
+    </div>
+            
+            {loading ? (
+                <p>Loading data...</p>
+            ) : (
+                
+                <div className="table-wrapper">
+ <table className="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Major</th>
+                                <th>Year</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>English Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {applications.map((app) => (
+                                <tr key={app.id}>
+                                    <td>{app.name}</td>
+                                    <td>{app.age}</td>
+                                    <td>{app.major}</td>
+                                    <td>{app.yearOfStudy}</td>
+                                    <td>{app.email}</td>
+                                    <td>{app.phone}</td>
+                                    <td>{app.englishLevel}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default Admin;
+/* Applications.css */
+
+/* 1. استدعاء الخطوط الثلاثة من Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap');
+
+/* الحاوية الرئيسية للصفحة */
+.applications-container {
+    padding: 6rem 5% 4rem 5%;
+    background-color: #cdcdce; 
+    background-image: url('JUDebate.jpeg'); 
+    background-repeat: no-repeat; 
+   background-size: cover; 
+    background-position: center;
+    min-height: 100vh;
+    /* خط افتراضي للحاوية */
+    font-family: 'Inter', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* عنوان الصفحة */
+.applications-container h2 {
+    font-family: 'Montserrat', sans-serif; /* تطبيق Montserrat */
+    font-size: 40px;
+    font-weight: 700;
+    color: #1b365d; 
+    margin-bottom: 2rem;
+    text-align: center;
+    border-bottom: 4px solid #F5BD02; 
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* حاوية الفورم */
+.application-form {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    width: 100%;
+    max-width: 700px; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+/* تنسيق النصوص فوق الحقول (Labels) */
+.application-form label {
+    font-family: 'Inter', sans-serif; /* تطبيق Inter */
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: -5px; 
+    text-align: left; 
+    width: 100%; 
+    display: block; 
+}
+
+/* نصوص الأسئلة داخل المجموعات */
+.form-group p {
+    font-family: 'Inter', sans-serif; /* تطبيق Inter */
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: left; 
+}
+
+/* تنسيق حقول الإدخال النصية والرقمية */
+.application-form input[type="text"],
+.application-form input[type="number"],
+.application-form input[type="email"],
+.application-form input[type="tel"] {
+    font-family: 'Roboto', sans-serif; /* تطبيق Roboto مدخلات المستخدم */
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+/* تأثير عند الضغط على حقل الإدخال */
+.application-form input:focus {
+    outline: none;
+    border-color: #1b365d; 
+    background-color: #fff;
+}
+
+/* المجموعات الخاصة بالدوائر والمربعات (الأسئلة) */
+.form-group {
+    margin-top: 15px;
+    padding: 20px;
+    background-color: #f4f6f9; 
+    border-left: 5px solid #1b365d; 
+    border-radius: 5px;
+}
+
+/* تنسيق خيارات الدوائر والمربعات */
+.radio-option,
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* تصغير حجم الدوائر والمربعات */
+.radio-option input[type="radio"],
+.checkbox-option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* نصوص الخيارات بجانب الدوائر والمربعات */
+.radio-option label,
+.checkbox-option label {
+    font-family: 'Roboto', sans-serif; /* تطبيق Roboto للخيارات */
+    font-weight: 400;
+    color: #444;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* تنسيق الحقل النصي الخاص بخيار Other */
+.other-input input[type="text"] {
+    flex: 1;
+    padding: 5px 10px;
+    border: none !important;
+    border-bottom: 1px solid #ccc !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+}
+
+.other-input input[type="text"]:focus {
+    border-bottom: 2px solid #1b365d !important;
+}
+
+/* زر الإرسال */
+.application-form button[type="submit"] {
+    font-family: 'Montserrat', sans-serif; /* تطبيق Montserrat للزر */
+    padding: 15px;
+    background-color: #1b365d; 
+    color: #fff; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* تأثير زر الإرسال عند مرور الماوس */
+.application-form button[type="submit"]:hover {
+    background-color: #F5BD02; 
+    color: #1b365d;
+}
+
+.application-form button[type="submit"]:active {
+    transform: scale(0.98); 
+}
+.form-status {
+  
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 90%;
+  width: max-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    padding: 12px 16px;
+  border-radius: 8px;
+
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-status.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.form-status.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+/* --- إعدادات الهواتف لصفحة Applications --- */
+@media (max-width: 768px) {
+  .applications-container {
+    padding: 4rem 15px 2rem 15px; /* تقليل المسافات الجانبية */
+  }
+
+  .applications-container h2 {
+    font-size: 30px; /* تصغير العنوان */
+  }
+
+  .application-form {
+    padding: 20px; /* تقليل المسافة الداخلية للفورم */
+  }
+
+  .application-form label,
+  .form-group p {
+    font-size: 1rem;
+  }
+  
+  .other-input {
+      flex-direction: column; /* ترتيب خيار Other وحقله النصي فوق بعض */
+      align-items: flex-start !important;
+  }
+  
+  .other-input input[type="text"] {
+      width: 100%;
+  }
+  
+}
+import React, { useState } from 'react';
+import './Applications.css';
+import { collection, addDoc } from "firebase/firestore";
+import { db } from './firebase';
+
+
+const Applications = () => {
+    // 1. تعريف الحالة لتخزين قيم الحقول
+    const [formData, setFormData] = useState({
+        name: '',
+        age: '',
+        major: '',
+        email: '',
+        phone: '',
+        yearOfStudy: '',
+        englishLevel: '',
+        schoolSystem: '',
+        schoolSystemOtherText: '',
+        experience: [],
+        experienceOtherText: ''
+    });
+const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
+    // 2. دالة تحديث النصوص وخيارات الراديو
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // 3. دالة معالجة مربعات الاختيار (Checkboxes)
+    const handleCheckboxChange = (e) => {
+        const { value, checked } = e.target;
+        if (checked) {
+            setFormData(prev => ({ ...prev, experience: [...prev.experience, value] }));
+        } else {
+            setFormData(prev => ({ ...prev, experience: prev.experience.filter(item => item !== value) }));
+        }
+    };
+
+    // 4. دالة الإرسال إلى Firestore
+   const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const docRef = await addDoc(collection(db, "applications"), formData);
+    console.log("Document written with ID: ", docRef.id);
+
+    setStatusMessage({ type: 'success', text: 'تم إرسال طلبك بنجاح ✅' });
+    setFormData({
+      name: '', age: '', major: '', email: '', phone: '',
+      yearOfStudy: '', englishLevel: '', schoolSystem: '',
+      schoolSystemOtherText: '', experience: [], experienceOtherText: ''
+    });
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    setStatusMessage({ type: 'error', text: 'حدث خطأ أثناء الإرسال، حاول مرة ثانية.' });
+  }
+
+  // الرسالة بتختفي لحالها بعد 4 ثواني
+  setTimeout(() => setStatusMessage({ type: '', text: '' }), 4000);
+};
+
+
+    return (
+        
+        <main className="applications-container">
+            <h2>Applications</h2>
+            {statusMessage.text && (
+  <div className={`form-status ${statusMessage.type}`}>
+    {statusMessage.text}
+  </div>
+)}
+            <form className="application-form" onSubmit={handleSubmit}>
+                
+                <label htmlFor="name">Name:</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required 
+                    placeholder="Your Name" 
+                    value={formData.name} 
+                    onChange={handleChange} 
+                />    
+                
+                <label htmlFor="age">Age:</label>
+                <input 
+                    type="number" 
+                    id="age" 
+                    name="age" 
+                    required 
+                    placeholder="Your Age" 
+                    value={formData.age} 
+                    onChange={handleChange} 
+                />
+                
+                <label htmlFor="major">Major:</label>
+                <input 
+                    type="text" 
+                    id="major" 
+                    name="major" 
+                    required 
+                    placeholder="Your Major" 
+                    value={formData.major} 
+                    onChange={handleChange} 
+                />
+
+                <label htmlFor="email">Email:</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder="Your Email@gmail.com" 
+                    value={formData.email} 
+                    onChange={handleChange} 
+                />
+
+                {/* سنة الدراسة */}
+                <div className="form-group">
+                    <p>Year of study:</p>
+                    {['1st year', '2nd year', '3rd year', '4th year', 'Other'].map((year) => (
+                        <div key={year} className="radio-option">
+                            <input 
+                                type="radio" 
+                                id={`year-${year}`} 
+                                name="yearOfStudy" 
+                                value={year} 
+                                onChange={handleChange} 
+                                checked={formData.yearOfStudy === year} 
+                            />
+                            <label htmlFor={`year-${year}`}>{year}</label>
+                        </div>
+                    ))}
+                </div>
+                 
+                <label htmlFor="phone">Phone Number:</label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    required 
+                    placeholder="Your Phone Number" 
+                    value={formData.phone} 
+                    onChange={handleChange} 
+                />
+                 
+                {/* مستوى اللغة الإنجليزية */}
+                <div className="form-group">
+                    <p>What english level have you been assigned originally in the level exam?</p>
+                    {['A1.1', 'A1.2', 'A2.1', 'A2.2', 'B1.1', 'B1.2', 'B2.1', 'B2.2', 'C1.1', 'C1.2'].map((level) => (
+                        <div key={level} className="radio-option">
+                            <input 
+                                type="radio" 
+                                id={`level-${level}`} 
+                                name="englishLevel" 
+                                value={level} 
+                                onChange={handleChange} 
+                                checked={formData.englishLevel === level} 
+                            />
+                            <label htmlFor={`level-${level}`}>{level}</label>
+                        </div>
+                    ))}
+                </div> 
+
+                {/* النظام المدرسي */}
+                <div className="form-group">
+                    <p>What school system is your school degree based on?</p>
+                    {['Jordanian Tawjihi', 'American program', 'IB', 'IGCSE', 'Arabic Degrees'].map((system) => (
+                        <div key={system} className="radio-option">
+                            <input 
+                                type="radio" 
+                                id={`system-${system}`} 
+                                name="schoolSystem" 
+                                value={system} 
+                                onChange={handleChange} 
+                                checked={formData.schoolSystem === system} 
+                            />
+                            <label htmlFor={`system-${system}`}>{system}</label>
+                        </div>
+                    ))}
+                    <div className="radio-option other-input" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <input 
+                            type="radio" 
+                            id="system-other" 
+                            name="schoolSystem" 
+                            value="Other" 
+                            onChange={handleChange} 
+                            checked={formData.schoolSystem === 'Other'}
+                        />
+                        <label htmlFor="system-other">Other:</label>
+                        <input 
+                            type="text" 
+                            name="schoolSystemOtherText" 
+                            value={formData.schoolSystemOtherText} 
+                            onChange={handleChange} 
+                            style={{ borderBottom: '1px solid #ccc', borderTop: 'none', borderLeft: 'none', borderRight: 'none', outline: 'none' }} 
+                        />
+                    </div>
+                </div>
+
+                {/* الخبرات السابقة */}
+                <div className="form-group">
+                    <p>Do you have any experience with debate, MUN, public speaking, presentations?</p>
+                    {['Yes, Formal Debate', 'Yes, Public speaking', 'Yes, Presentations', 'Yes, MUN', 'No prior experience'].map((exp) => (
+                        <div key={exp} className="checkbox-option">
+                            <input 
+                                type="checkbox" 
+                                id={`exp-${exp}`} 
+                                name="experience" 
+                                value={exp} 
+                                onChange={handleCheckboxChange} 
+                                checked={formData.experience.includes(exp)}
+                            />
+                            <label htmlFor={`exp-${exp}`}>{exp}</label>
+                        </div>
+                    ))}
+                    <div className="checkbox-option other-input" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <input 
+                            type="checkbox" 
+                            id="exp-other" 
+                            name="experience" 
+                            value="Other" 
+                            onChange={handleCheckboxChange} 
+                            checked={formData.experience.includes('Other')}
+                        />
+                        <label htmlFor="exp-other">Other:</label>
+                        <input 
+                            type="text" 
+                            name="experienceOtherText" 
+                            value={formData.experienceOtherText} 
+                            onChange={handleChange} 
+                            style={{ borderBottom: '1px solid #ccc', borderTop: 'none', borderLeft: 'none', borderRight: 'none', outline: 'none' }} 
+                        />
+                    </div>
+                </div>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </main>
+    );
+};
+
+export default Applications;
+/* Contact.css */
+.form-status {
+  
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 90%;
+  width: max-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    padding: 12px 16px;
+  border-radius: 8px;
+
+  text-align: center;
+  font-weight: 600;
+}
+/* خلفية الصفحة بالكامل (لون بيج فاتح) */
+.contact-page-wrapper {
+    background-color: #F0F4F8; /* اللون المائل للبيج في الصورة */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Inter', sans-serif; /* يفضل استخدام خطوطك السابقة */
+}
+
+/* الحاوية الرئيسية للمربع */
+.contact-container {
+    display: flex;
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+}
+
+/* أزرار التكبير والإغلاق العلوية */
+
+
+
+
+
+
+
+
+/* --- القسم الأيسر (الصورة) --- */
+.contact-left {
+    flex: 1;
+    padding: 40px;
+}
+
+.contact-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- القسم الأيمن (النصوص والفورم) --- */
+.contact-right {
+    flex: 1.5;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-heading {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #1B365D;
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* تقسيم المحتوى داخل القسم الأيمن إلى عمودين (فورم ومعلومات) */
+.contact-content-split {
+    display: flex;
+    gap: 60px;
+    border-top: 2px solid #1B365D; /* الخط الأسود الفاصل أعلى الفورم */
+    padding-top: 40px;
+}
+
+/* --- تصميم الفورم (عمود اليسار) --- */
+.contact-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 1rem;
+    color: #1B365D;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+/* تصميم حقول الإدخال (خط سفلي فقط بدون إطار) */
+.input-group input {
+    border: none;
+    border-bottom: 2px solid #1B365D;
+    background-color: transparent;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    color: #1B365D;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-bottom-color: #1B365D;
+}
+
+/* الزر الأسود البيضاوي */
+.contact-submit-btn {
+    background-color: #000;
+    color: #ffffff;
+    border: none;
+    border-radius: 30px; /* جعل الحواف دائرية بالكامل */
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: max-content; /* حجم الزر على قد الكلمة */
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-submit-btn:hover {
+    background-color: #7bcaff;
+}
+
+/* --- تصميم معلومات التواصل (عمود اليمين) --- */
+.contact-info {
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.info-block h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0 0 10px 0;
+    color: #1B365D;
+}
+
+.info-block p {
+    font-size: 1rem;
+    color: #1B365D;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* الأيقونات الاجتماعية */
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: auto; /* دفع الأيقونات لأسفل العمود */
+    align-items: center;
+    padding-bottom: 15px; /* لمساواة الأيقونات مع زر الإرسال */
+}
+
+.social-icons .icon {
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+/* --- إعدادات الهواتف لصفحة Contact --- */
+@media (max-width: 768px) {
+  .contact-page-wrapper {
+    padding: 10px;
+  }
+
+  .contact-container {
+    flex-direction: column; /* ترتيب الصورة والفورم فوق بعض */
+  }
+
+  .contact-left {
+    padding: 20px;
+  }
+
+  .contact-right {
+    padding: 20px;
+  }
+
+  .contact-heading {
+    font-size: 2.5rem; /* تصغير حجم العنوان */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contact-content-split {
+    flex-direction: column; /* ترتيب حقول الإدخال ومعلومات التواصل فوق بعض */
+    gap: 30px;
+    border-top: none; /* إزالة الخط الفاصل لتوفير المساحة */
+    padding-top: 10px;
+  }
+
+  .contact-submit-btn {
+    width: 100%; /* جعل الزر يأخذ عرض الشاشة بالكامل */
+    text-align: center;
+  }
+  
+  .social-icons {
+    justify-content: center; /* توسيط أيقونات التواصل */
+  }
+  
+  .info-block {
+      text-align: center; /* توسيط معلومات التواصل */
+  }
+}
+import React, { useState } from 'react';
+import './Contact.css'; 
+import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+
+const Contact = () => {
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        message: ''
+    });
+    const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("Data Submitted: ", formData);
+        setStatusMessage({ type: 'success', text: 'تم إرسال رسالتك بنجاح ✅' });
+        setFormData({ fullName: '', email: '', message: '' });
+        setTimeout(() => setStatusMessage({ type: '', text: '' }), 4000);
+    };
+
+    return (
+        <div className="contact-page-wrapper">
+            {statusMessage.text && (
+                <div className={`form-status ${statusMessage.type}`}>
+                    {statusMessage.text}
+                </div>
+            )}
+            <div className="contact-container">
+                <div className="contact-left">
+                    <img 
+                        src="https://via.placeholder.com/600x800/dcbdae/ffffff?text=Fashion+Models" 
+                        alt="Models" 
+                        className="contact-image" 
+                    />
+                </div>
+
+                <div className="contact-right">
+                    <h1 className="contact-heading">Contact Us</h1>
+
+                    <div className="contact-content-split">
+                        <form className="contact-form" onSubmit={handleSubmit}>
+                            <div className="input-group">
+                                <label htmlFor="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" value={formData.fullName} onChange={handleChange} required />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="email">E-mail</label>
+                                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="message">Message</label>
+                                <input type="text" id="message" name="message" value={formData.message} onChange={handleChange} required />
+                            </div>
+                            <button type="submit" className="contact-submit-btn">Contact Us</button>
+                        </form>
+
+                        <div className="contact-info">
+                            <div className="info-block">
+                                <h3>Contact</h3>
+                                <p>JUDebateClub@Gmail.Com</p>
+                            </div>
+                            <div className="info-block">
+                                <h3>Based in</h3>
+                                <p>Jordan University,<br/>Amman</p>
+                            </div>
+                            <div className="social-icons">
+                                <FaFacebookF className="icon" />
+                                <FaInstagram className="icon" />
+                                <FaTwitter className="icon" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Contact;
+// src/firebase.js
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAkM5g5IQr3YvbM8Wso1USBg0FCXWH4RAQ",
+  authDomain: "judebateclub2025-392e5.firebaseapp.com",
+  projectId: "judebateclub2025-392e5",
+  storageBucket: "judebateclub2025-392e5.firebasestorage.app",
+  messagingSenderId: "1057196910405",
+  appId: "1:1057196910405:web:948467443f7d7dfbe7002c",
+  measurementId: "G-XJP8GGBD3G"
+};
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const storage = getStorage(app);
+/* Home.css */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 100vh;
+  background-image: url('JUDebate.jpeg');
+  background-size: cover;
+  background-position: left center;
+  background-color: #e5e7eb;
+  overflow: hidden;
+}
+
+.text-content {
+  flex: 0 0 40%;
+  max-width: 40%;
+  padding: 6rem 5% 2rem 5%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.text-content h2 {
+  font-size: 48px;
+  font-weight: bold;
+  color: #333;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.join-button {
+  padding: 5px 10px;
+  background-color: var(--ju-navy);
+  color: var(--ju-white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 2rem;
+  transition: background-color 0.3s ease;
+  height: inherit;
+  width: 150px;
+  display: block;
+  margin-left: 0;
+  margin-top: 15px;
+}
+
+.join-button:hover {
+  background-color: #F5BD02;
+  font-weight: bold;
+}
+
+.image-wrapper {
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 65%;
+  height: 100%;
+  transform: skewX(-25deg);
+  border-left: 5px solid #F5BD02;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.image-bg {
+  position: absolute;
+  top: 0;
+  left: -20%;
+  width: 140%;
+  height: 100%;
+  transform: skewX(25deg);
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* --- إعدادات التجاوب على الهواتف --- */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    padding-bottom: 20px;
+  }
+
+  .text-content {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+    padding: 3rem 15px 2rem 15px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .text-content h2 {
+    font-size: 2.2rem;
+    background: transparent;
+  }
+
+  .text-content p {
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .join-button {
+    margin: 15px auto 0 auto;
+  }
+
+  .join-button:hover {
+    background-color: var(--ju-dark-navy);
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 90%;
+    height: 250px;
+    right: 0;
+    transform: none;
+    border-left: none;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .image-bg {
+    width: 100%;
+    left: 0;
+    transform: none;
+    position: relative;
+  }
+
+  .hero-video {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+}
+import React from 'react';
+import { Link } from 'react-router-dom'; // 1. استيراد Link من مكتبة التوجيه
+import './Home.css';
+
+const Home = () => {
+    return (
+        <main className="hero">
+            {/* قسم النص */}
+            <div className="text-content">
+             <h2>OUR VISION</h2>
+                <p>Welcome to the JU Debate Club! Join us to enhance your public<br></br> speaking and critical thinking skills.</p>
+                <p>We organize weekly debates, workshops and competitions. Whether you're a beginner or an experienced <br></br>debater, there's a place for you here!</p>
+                
+                {/* 2. استبدال button بـ Link وتحديد المسار في خاصية to */}
+                <Link to="/applications" className="join-button" style={{ textDecoration: 'none', textAlign: 'center' }}>
+                    Join Us
+                </Link>
+            </div>
+            
+            {/* قسم الفيديو */}
+            <div className="image-wrapper">
+                <div className="image-bg">
+                    <video 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline 
+                        className="hero-video"
+                    >
+                        {/* هنا نكتب مسار الفيديو مباشرة مسبوقاً بشرطة مائلة / */}
+                        <source src="/WEBVideo.mp4" type="video/mp4" />
+                        متصفحك لا يدعم تشغيل الفيديو.
+                    </video>
+                </div>
+            </div>
+        </main>
+    );
+};
+
+export default Home;
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f4f6f9;
+}
+
+.login-form {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-form h2 {
+    text-align: center;
+    color: #1a2a42;
+    margin-bottom: 10px;
+}
+
+.login-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+}
+
+.login-form input:focus {
+    border-color: #1a2a42;
+}
+
+.login-form button {
+    background-color: #1a2a42;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-form button:hover {
+    background-color: #2c436b;
+}
+
+.error-msg {
+    color: #d9534f;
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+}
+@media (max-width: 768px) {
+    .login-form {
+        padding: 30px;
+        width: 90%;
+    }
+}
+.error-msg {
+    color: #d9534f;
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f4f6f9;
+}
+
+import React, { useState } from 'react';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from './firebase';
+
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
+
+
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        navigate('/admin');
+    } catch (err) {
+        console.error("خطأ الفايربيز بالتفصيل:", err.code, err.message); // اطبع الخطأ الحقيقي هنا
+        setError('الخطأ هو: ' + err.code); // ليظهر لك الخطأ على الشاشة وتعرفه فوراً
+    }
+};
+
+    return (
+        <div className="login-container">
+            <form className="login-form" onSubmit={handleLogin}>
+                <h2>Admin Login</h2>
+                {error && <p className="error-msg">{error}</p>}
+                
+                <input 
+                    type="email" 
+                    placeholder="Admin Email" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    required 
+                />
+                
+                <input 
+                    type="password" 
+                    placeholder="Password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required 
+                />
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    );
+};
+
+export default Login;
+/* الإطار الخارجي */
+.motions-page {
+  padding: 40px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: left;
+  font-family: sans-serif;
+  background-color: #68a8cd; 
+}
+
+.motions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  margin-bottom: 20px;
+}
+
+.add-motion-btn {
+  padding: 10px 20px;
+  background: #F5BD02;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #1b365d;
+}
+
+.main-title {
+  color: black; 
+  font-family: 'EB Garamond', serif;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.content-container {
+  border-radius: 10px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 350px;
+  margin-bottom: 40px;
+  background-color: #F0F8FF;
+}
+
+.text-section {
+  flex: 0 0 45%;
+  padding: 20px 40px 20px 20px; 
+  clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+  background: linear-gradient(to bottom, #c4cddb, #5a7bc8);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  justify-content: flex-start;
+}
+
+.section-title {
+  color: #2b19ef; 
+  margin-top: 0; 
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: 'Georgia', serif;
+}
+
+.section-desc {
+  color: #ffffff; 
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  font-family: 'Verdana', sans-serif;
+}
+
+.slider-section {
+  flex: 1;
+  padding: 10px 40px 10px 10px; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.slider-title {
+  color: red;
+  margin-bottom: 20px;
+  text-align: right;
+  width: 100%;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: auto; 
+  justify-content: center;
+}
+
+.arrow-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: gold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.arrow-btn:hover {
+  transform: scale(1.2);
+}
+
+.images-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.center-img {
+  width: 325px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.side-img {
+  width: 120px;
+  height: 60px;
+  object-fit: cover;
+  opacity: 0.6;
+  border-radius: 6px;
+}
+
+/* --- إعدادات الهواتف: بلوك واحد بس --- */
+@media (max-width: 768px) {
+  .motions-page {
+    padding: 15px;
+  }
+
+  .motions-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0;
+  }
+
+  .content-container {
+    flex-direction: column;
+    min-height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+  }
+
+  .text-section {
+    flex: none;
+    width: 100%;
+    clip-path: none;
+    padding: 25px 20px;
+    box-sizing: border-box;
+    align-items: center;
+    text-align: center;
+  }
+
+  .section-title { font-size: 1.3rem; }
+  .section-desc { font-size: 0.95rem; }
+
+  .slider-section {
+    flex: none;
+    width: 100%;
+    padding: 15px 5px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel {
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .images-wrapper {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .center-img {
+    width: 170px;
+    height: 110px;
+    border-radius: 6px;
+  }
+
+  .side-img {
+    width: 55px;
+    height: 40px;
+    border-radius: 4px;
+    opacity: 0.5;
+  }
+
+  .arrow-btn {
+    font-size: 1.8rem;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 50%;
+    padding: 4px 10px;
+  }
+}
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+import { db } from './firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import './Motions.css';
+
+const MotionCard = ({ title, description, images }) => {
+  const imageList = (images && images.length > 0 && images.some(img => img)) 
+    ? images 
+    : ["https://via.placeholder.com/400x200?text=No+Image"];
+  
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === imageList.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? imageList.length - 1 : prevIndex - 1
+    );
+  };
+
+  const prevIndex = currentIndex === 0 ? imageList.length - 1 : currentIndex - 1;
+  const nextIndex = currentIndex === imageList.length - 1 ? 0 : currentIndex + 1;
+
+  return (
+    <div className="content-container">
+      <div className="text-section">
+        <h2 className="section-title">{title}</h2>
+        <p className="section-desc">{description}</p>
+      </div>
+
+      <div className="slider-section">
+        <div className="carousel">
+          <button className="arrow-btn" onClick={prevSlide}>&#11013;</button>
+          
+          <div className="images-wrapper">
+            {imageList.length > 1 ? (
+              <>
+                <img src={imageList[prevIndex]} alt="Previous" className="side-img" onError={(e)=>{e.target.src="https://via.placeholder.com/200?text=Error"}} />
+                <img src={imageList[currentIndex]} alt="Current" className="center-img" onError={(e)=>{e.target.src="https://via.placeholder.com/400?text=Error"}} />
+                <img src={imageList[nextIndex]} alt="Next" className="side-img" onError={(e)=>{e.target.src="https://via.placeholder.com/200?text=Error"}} />
+              </>
+            ) : (
+              <img src={imageList[0]} alt="Current" className="center-img" style={{ margin: '0 auto' }} onError={(e)=>{e.target.src="https://via.placeholder.com/400?text=Error"}} />
+            )}
+          </div>
+
+          <button className="arrow-btn" onClick={nextSlide}>&#10145;</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Motions = () => {
+  const { user } = useAuth();
+  const [dbMotions, setDbMotions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  const staticMotions = [
+    {
+      id: 1,
+      title : "Is Extreme Wealth Inherently Bad for Society?",
+      description: "Debate the societal implications of extreme wealth and its impact on social equity.",
+      images: [
+        "/images/Screenshot 2026-05-13 095157.png",
+        "/images/Screenshot 2026-05-18 073628.png",
+        "/images/Screenshot 2026-05-22 014851.png"
+      ]
+    },
+    {
+      id: 2,
+      title: "TITLE 2",
+      description: "About the second motion",
+      images: [
+        "https://via.placeholder.com/400x200/F3FF33/000000?text=Card+2+-+Img+1",
+        "https://via.placeholder.com/400x200/FF33F3/FFFFFF?text=Card+2+-+Img+2",
+        "https://via.placeholder.com/400x200/33FFF3/000000?text=Card+2+-+Img+3"
+      ]
+    },
+    {
+      id: 3,
+      title: "TITLE 3",
+      description: "About the third motion",
+      images: [
+        "https://via.placeholder.com/400x200/000000/FFFFFF?text=Card+3+-+Img+1",
+        "https://via.placeholder.com/400x200/555555/FFFFFF?text=Card+3+-+Img+2",
+        "https://via.placeholder.com/400x200/999999/000000?text=Card+3+-+Img+3"
+      ]
+    },
+    {
+      id: 4,
+      title: "TITLE 4",
+      description: "About the fourth motion",
+      images: [
+        "https://via.placeholder.com/400x200/aa0000/FFFFFF?text=Card+4+-+Img+1",
+        "https://via.placeholder.com/400x200/00aa00/FFFFFF?text=Card+4+-+Img+2",
+        "https://via.placeholder.com/400x200/0000aa/FFFFFF?text=Card+4+-+Img+3"
+      ]
+    },
+    {
+      id: 5,
+      title: "TITLE 5",
+      description: "About the fifth motion",
+      images: [
+        "https://via.placeholder.com/400x200/123456/FFFFFF?text=Card+5+-+Img+1",
+        "https://via.placeholder.com/400x200/654321/FFFFFF?text=Card+5+-+Img+2",
+        "https://via.placeholder.com/400x200/abcdef/000000?text=Card+5+-+Img+3"
+      ]
+    }
+  ];
+
+  useEffect(() => {
+    const fetchMotionsFromDB = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "motions"));
+        const motions = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setDbMotions(motions);
+      } catch (error) {
+        console.error("Error fetching motions: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMotionsFromDB();
+  }, []);
+
+  const allMotions = [...dbMotions, ...staticMotions];
+
+  return (
+    <div className="motions-page">
+      <div className="motions-header">
+  <h1 className="main-title">MOTIONS</h1>
+  {user && (
+    <button className="add-motion-btn" onClick={() => navigate('/add-motion')}>
+      + Add Motion (Admin)
+    </button>
+  )}
+</div>
+
+      {allMotions.map((motion) => (
+        <MotionCard 
+          key={motion.id} 
+          title={motion.title} 
+          description={motion.description} 
+          images={motion.images} 
+          imageUrl={motion.imageUrl}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Motions;
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { auth } from './firebase'; // تأكد من مطابقة مسار ملف الـ firebase لديك
+
+const ProtectedRoute = ({ children }) => {
+    // auth.currentUser يتحقق إذا كان هناك مستخدم مسجل دخول حالياً
+    const user = auth.currentUser;
+
+    // إذا لم يكن مسجلاً، قم بتوجيهه لصفحة الـ login
+    // ملاحظة: يمكنك أيضاً الاعتماد على onAuthStateChanged إذا احتجت لفحص دقيق للـ session
+    if (!user) {
+        return <Navigate to="/login" />;
+    }
+    return children;
+};
+
+export default ProtectedRoute;
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
+import Navbar from './Pages/NavbarFooter/Navbar';
+import Footer from './Pages/NavbarFooter/Footer';
+import Home from './Pages/Home';
+import Applications from './Pages/Applications';
+import Motions from './Pages/Motions';
+import Contact from './Pages/Contact';
+import Admin from './Pages/Admin'
+import Login from './Pages/Login';
+import AddMotionAdmin from './Pages/AddMotionAdmin';
+import ProtectedRoute from './Pages/ProtectedRoute';
+import './App.css'; 
+
+function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Navbar />
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/applications" element={<Applications />} />
+            <Route path="/motions" element={<Motions />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/add-motion" element={
+              <ProtectedRoute>
+                <AddMotionAdmin />
+              </ProtectedRoute>
+            } />
+          </Routes>
+
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
+  );
+}
+
+export default App;

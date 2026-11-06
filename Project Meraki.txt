@@ -1,0 +1,7 @@
+Project Meraki
+Nav Bar {Home, Activities, Applications, Motions, Contact}
+Pages [ Home.js/Home.css
+       Activities.js/Activities.css
+       Applications.js/Applications.css
+       Motions.js/Motions.css 
+       Contact.js/Contact.css]

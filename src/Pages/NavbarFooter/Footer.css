@@ -1,0 +1,32 @@
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background-color: var(--ju-navy); /* استخدام الكحلي الأساسي */
+    color: var(--ju-white);
+    margin-top: auto; 
+    z-index: 10;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+.footer-signature {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.signature-name {
+  font-family: "Edu NSW ACT Cursive", cursive;
+  font-size: 1rem; /* تكبير بسيط ليظهر كأنه إمضاء يدوي حقيقي */
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+}

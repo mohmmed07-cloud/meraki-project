@@ -1,0 +1,151 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 40px;
+    background-color: #1a2a42;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 55px;
+    height: 55px; 
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo h3 {
+    margin: 0;
+    color: #ffffff; 
+    font-size: 1.6rem;
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* زر الهامبرغر مخفي على الشاشات الكبيرة */
+.menu-toggle-btn {
+    display: none;
+    font-size: 1.8rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.menu-toggle-btn:hover {
+    color: #F5BD02;
+}
+
+/* القائمة الأفقية للكمبيوتر */
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    gap: 12px; 
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.nav-list li {
+    position: relative;
+    z-index: 2;
+    border-radius: 6px;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.05rem;
+    font-family: 'EB Garamond', serif;
+    display: block; 
+    padding: 8px 14px;
+    transition: color 0.3s ease;
+}
+
+.nav-list li:hover a {
+    color: #1a2a42;
+}
+
+/* الصندوق الأبيض المنزلق للكمبيوتر */
+.animation-slider {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    background-color: #ffffff;
+    border-color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(247, 247, 247, 0.45);
+    border-radius: 6px;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1); 
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ---------------------------------------------------- */
+/* شاشات الهواتف والتابلت (أقل من 900px)                */
+/* ---------------------------------------------------- */
+@media (max-width: 900px) {
+    .navbar {
+        padding: 14px 24px;
+    }
+
+    .menu-toggle-btn {
+        display: block; /* إظهار زر القائمة */
+    }
+
+    .animation-slider {
+        display: none !important;
+    }
+
+    /* تحويل القائمة إلى منسدلة عمودية تحت الهيدر */
+    .nav-list {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #1a2a42;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease-in-out, padding 0.3s ease;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* عند تفعيل القائمة بالضغط على الهامبرغر */
+    .nav-list.active {
+        max-height: 450px;
+        padding: 15px 0;
+    }
+
+    .nav-list li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-list li a {
+        padding: 14px 0;
+        font-size: 1.15rem;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .nav-list li:hover a,
+    .nav-list li a:active {
+        background-color: rgba(245, 189, 2, 0.12);
+        color: #F5BD02;
+    }
+}
